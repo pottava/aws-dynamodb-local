@@ -3,12 +3,11 @@
 
 FROM pottava/java:7
 
-RUN apk --no-cache add --virtual build-dependencies curl \
-      && apk --no-cache add  \
+RUN apk --no-cache add curl \
       && mkdir -p /opt/dynamodb /var/dynamodb/db \
       && cd /opt/dynamodb \
       && curl --location --silent http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_latest | tar xzf - \
-      && apk del build-dependencies
+      && apk del curl
 
 WORKDIR /opt/dynamodb
 
