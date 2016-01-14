@@ -1,0 +1,18 @@
+ap:
+  image: pottava/nodejs:5.4
+  command: npm start
+  ports:
+    - "80:3000"
+  volumes:
+    - ".:/app"
+  working_dir: /app
+  environment:
+    - AWS_REGION
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
+  links:
+    - dynamodb:db
+
+dynamodb:
+  image: pottava/aws-dynamodb-local
+  container_name: dynamodb
